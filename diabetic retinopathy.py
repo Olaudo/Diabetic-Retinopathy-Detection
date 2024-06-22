@@ -261,10 +261,10 @@ earlystopping = EarlyStopping(monitor='val_loss', mode='min', verbose=1, patienc
 #save the best model with lower validation loss
 checkpointer = ModelCheckpoint(filepath="weights.hdf5", verbose=1, save_best_only=True)
 
-earlystopping = EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience=15)
-
-#save the best model with lower validation loss
-checkpointer = ModelCheckpoint(filepath="weights.hdf5", verbose=1, save_best_only=True)
+history = model.fit(train_generator,
+                    epochs=50,  
+                    validation_data=validation_generator,
+                    callbacks=[earlystopping, checkpointer])
 
 #To check and evaluate performance:
 
